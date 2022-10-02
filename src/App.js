@@ -1,24 +1,32 @@
-import logo from './logo.svg';
+import cat1 from './assets/cat1.jpg';
 import './App.css';
+import { Image, Box, Button, ButtonGroup, ChakraProvider } from '@chakra-ui/react'
+import React, { useState } from "react";
 
 function App() {
+  const [showCat, setShowCat] = useState(false);
+  let image;
+  let button;
+
+  if (!!showCat) {
+    image = (<Image
+               onClick={() => setShowCat(false)}
+               src={cat1}
+               alt='uyu'
+               boxSize='500px'
+               objectFit='cover'
+             />)
+    button = ''
+  } else {
+    image = ''
+    button = (<Button onClick={() => setShowCat(true)} colorScheme='blue'>Dont touch!</Button>)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChakraProvider className="App">
+        {image}
+        {button}
+    </ChakraProvider>
   );
 }
 
