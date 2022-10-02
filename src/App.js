@@ -1,31 +1,22 @@
-import cat1 from './assets/cat1.jpg';
+import Secret from './Secret';
+import Home from './Home';
+import Header from './Header';
 import './App.css';
-import { Image, Box, Button, ButtonGroup, ChakraProvider } from '@chakra-ui/react'
-import React, { useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import { ChakraProvider } from '@chakra-ui/react'
+import React from "react";
+import Footer from './Footer';
 
 function App() {
-  const [showCat, setShowCat] = useState(false);
-  let image;
-  let button;
-
-  if (!!showCat) {
-    image = (<Image
-               onClick={() => setShowCat(false)}
-               src={cat1}
-               alt='uyu'
-               boxSize='500px'
-               objectFit='cover'
-             />)
-    button = ''
-  } else {
-    image = ''
-    button = (<Button onClick={() => setShowCat(true)} colorScheme='blue'>Dont touch!</Button>)
-  }
-
   return (
     <ChakraProvider className="App">
-        {image}
-        {button}
+        <Header />
+        <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route path="/secret" element={<Secret />} />
+        </Routes>
+        <Footer />
+
     </ChakraProvider>
   );
 }
